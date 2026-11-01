@@ -1,0 +1,186 @@
+/*
+ * AdminLTE 4 stylesheet entry point.
+ */
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import 'overlayscrollbars/overlayscrollbars.css';
+@import 'admin-lte/dist/css/adminlte.css';
+
+/*
+ * OTP 2025 - AdminLTE 4 Senior-Friendly White Theme (40+)
+ */
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&family=Sarabun:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+    --bs-body-font-family: 'Sarabun', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --bs-body-font-size: 1.0625rem; /* ~17px */
+    --bs-body-bg: #F8FAFC;
+    --bs-body-color: #0F172A;
+    --bs-primary: #0284C7;
+    --bs-primary-rgb: 2, 132, 199;
+    --bs-success: #15803D;
+    --bs-warning: #B45309;
+    --bs-danger: #B91C1C;
+    --lte-sidebar-width: 280px;
+}
+
+body {
+    font-family: 'Sarabun', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    background-color: #F8FAFC !important;
+    color: #0F172A;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Prompt', 'Sarabun', sans-serif;
+    font-weight: 600;
+    color: #0F172A;
+}
+
+/* Sidebar & Brand */
+.app-sidebar {
+    background-color: #FFFFFF !important;
+    border-right: 1.5px solid #E2E8F0 !important;
+    width: 280px !important;
+}
+
+.sidebar-brand {
+    background-color: #FFFFFF !important;
+    border-bottom: 1.5px solid #E2E8F0 !important;
+    padding: 1rem !important;
+}
+
+.sidebar-menu .nav-link {
+    font-size: 1.05rem !important;
+    font-weight: 500;
+    padding: 0.75rem 1rem !important;
+    border-radius: 8px !important;
+    color: #334155 !important;
+    margin: 2px 8px !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.sidebar-menu .nav-link:hover {
+    background-color: #F1F5F9 !important;
+    color: #0284C7 !important;
+}
+
+.sidebar-menu .nav-link.active {
+    background-color: #E0F2FE !important;
+    color: #0369A1 !important;
+    font-weight: 600 !important;
+    border-left: 4px solid #0284C7 !important;
+}
+
+.sidebar-menu .nav-header {
+    font-family: 'Prompt', sans-serif;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    color: #64748B !important;
+    padding: 1rem 1rem 0.4rem 1.25rem !important;
+    letter-spacing: 0.05em;
+}
+
+/* Cards & Content */
+.card {
+    background-color: #FFFFFF !important;
+    border: 1.5px solid #E2E8F0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05) !important;
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    background-color: #FFFFFF !important;
+    border-bottom: 1.5px solid #E2E8F0 !important;
+    padding: 1rem 1.25rem !important;
+    font-weight: 600;
+}
+
+/* Form Controls (48px targets) */
+.form-control, .form-select {
+    min-height: 48px !important;
+    font-size: 1.0625rem !important;
+    border: 1.5px solid #CBD5E1 !important;
+    border-radius: 8px !important;
+    padding: 0.6rem 1rem !important;
+    color: #0F172A !important;
+    background-color: #FFFFFF !important;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #0284C7 !important;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2) !important;
+}
+
+/* Buttons (48px targets) */
+.btn {
+    min-height: 44px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    padding: 0.55rem 1.25rem !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap !important;
+    line-height: 1.4 !important;
+}
+
+.btn i, .btn svg {
+    flex-shrink: 0 !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+}
+
+.btn-lg {
+    min-height: 52px !important;
+    font-size: 1.15rem !important;
+    padding: 0.75rem 1.5rem !important;
+}
+
+/* Tables */
+.table {
+    font-size: 1.05rem !important;
+    border-color: #E2E8F0 !important;
+    background-color: #FFFFFF !important;
+}
+
+.table th {
+    background-color: #F8FAFC !important;
+    font-weight: 600 !important;
+    color: #334155 !important;
+    padding: 0.9rem 1rem !important;
+    border-bottom: 2px solid #CBD5E1 !important;
+}
+
+.table td {
+    padding: 0.9rem 1rem !important;
+    vertical-align: middle !important;
+}
+
+/* Small Box & Info Box */
+.small-box, .info-box {
+    border-radius: 12px !important;
+    box-shadow: 0 2px 4px rgba(15, 23, 42, 0.05) !important;
+    border: 1.5px solid #E2E8F0 !important;
+}
+
+/* Badges */
+.badge {
+    font-size: 0.9rem !important;
+    padding: 0.45rem 0.75rem !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+}
+
+/* Utilities for legacy view compatibility */
+.hidden { display: none !important; }
+.padding4px { padding: 4px !important; }
+.selected { background: #bae6fd !important; }
+

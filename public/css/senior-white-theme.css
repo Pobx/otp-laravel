@@ -1,0 +1,499 @@
+/**
+ * OTP 2025 - Senior-Friendly Clean White Design System
+ * Designed specifically for users aged 40+ and low-tech municipal staff.
+ * 
+ * Core Principles:
+ * 1. Clean White & Soft Daylight: #F8FAFC background, #FFFFFF cards/tables
+ * 2. High Contrast Text: #0F172A (Primary), #475569 (Secondary)
+ * 3. Large Readable Typography: Sarabun font (16px - 18px body, 18px input)
+ * 4. Ergonomic Controls: 48px minimum touch/click targets, large distinct buttons
+ * 5. Clear Visual Boundaries: 1.5px solid borders, focus rings
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&family=Sarabun:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+    --otp-bg: #F8FAFC;
+    --otp-surface: #FFFFFF;
+    --otp-border: #CBD5E1;
+    --otp-border-light: #E2E8F0;
+    --otp-text-main: #0F172A;
+    --otp-text-muted: #475569;
+    --otp-primary: #0284C7;
+    --otp-primary-hover: #0369A1;
+    --otp-primary-light: #E0F2FE;
+    --otp-success: #15803D;
+    --otp-success-hover: #166534;
+    --otp-success-light: #DCFCE7;
+    --otp-warning: #B45309;
+    --otp-warning-hover: #92400E;
+    --otp-warning-light: #FEF3C7;
+    --otp-danger: #B91C1C;
+    --otp-danger-hover: #991B1B;
+    --otp-danger-light: #FEE2E2;
+    --otp-font-main: 'Sarabun', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --otp-font-heading: 'Prompt', 'Sarabun', sans-serif;
+}
+
+/* ==========================================================================
+   1. Base & Typography (16px - 18px minimum for 40+)
+   ========================================================================== */
+html, body {
+    background-color: var(--otp-bg) !important;
+    color: var(--otp-text-main) !important;
+    font-family: var(--otp-font-main) !important;
+    font-size: 16px !important;
+    line-height: 1.65 !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: var(--otp-font-heading) !important;
+    color: var(--otp-text-main) !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em;
+}
+
+h1, .h1 { font-size: 1.85rem !important; } /* ~30px */
+h2, .h2 { font-size: 1.65rem !important; } /* ~26px */
+h3, .h3 { font-size: 1.45rem !important; } /* ~23px */
+h4, .h4 { font-size: 1.25rem !important; } /* ~20px */
+h5, .h5 { font-size: 1.15rem !important; } /* ~18px */
+h6, .h6 { font-size: 1.05rem !important; } /* ~17px */
+
+p, span, td, th, li, a, div {
+    font-family: var(--otp-font-main);
+}
+
+.text-muted, .text-secondary {
+    color: var(--otp-text-muted) !important;
+}
+
+/* ==========================================================================
+   2. Global Topbar (Unified Header & Quick Switcher)
+   ========================================================================== */
+.otp-unified-topbar {
+    background-color: #FFFFFF !important;
+    border-bottom: 2px solid var(--otp-border-light) !important;
+    box-shadow: 0 2px 4px rgba(15, 23, 42, 0.04) !important;
+    padding: 10px 24px !important;
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1040;
+}
+
+.otp-topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.otp-topbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--otp-text-main);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.otp-topbar-brand img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+}
+
+.otp-nav-pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px !important;
+    border-radius: 8px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: var(--otp-text-main) !important;
+    background-color: #F1F5F9 !important;
+    border: 1.5px solid var(--otp-border) !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease;
+}
+
+.otp-nav-pill-btn:hover {
+    background-color: var(--otp-primary-light) !important;
+    color: var(--otp-primary) !important;
+    border-color: var(--otp-primary) !important;
+}
+
+.otp-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.otp-user-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px;
+    background-color: #F8FAFC;
+    border: 1.5px solid var(--otp-border-light);
+    border-radius: 9999px;
+    font-size: 15px;
+    color: var(--otp-text-main);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   3. Forms & Inputs (48px Touch Target, 18px Font)
+   ========================================================================== */
+.form-control, .form-select, input[type="text"], input[type="password"],
+input[type="email"], input[type="number"], input[type="date"], input[type="search"],
+select, textarea {
+    min-height: 48px !important;
+    font-size: 17px !important;
+    color: var(--otp-text-main) !important;
+    background-color: #FFFFFF !important;
+    border: 1.5px solid var(--otp-border) !important;
+    border-radius: 8px !important;
+    padding: 10px 16px !important;
+    line-height: 1.5 !important;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+}
+
+.form-control:focus, .form-select:focus, input:focus, select:focus, textarea:focus {
+    border-color: var(--otp-primary) !important;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2) !important;
+    outline: none !important;
+}
+
+label, .form-label {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: var(--otp-text-main) !important;
+    margin-bottom: 6px !important;
+    display: inline-block;
+}
+
+/* ==========================================================================
+   4. Buttons (Minimum 44px - 48px Height, High Contrast)
+   ========================================================================== */
+.btn {
+    min-height: 44px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    padding: 10px 20px !important;
+    border-radius: 8px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+.btn-primary, .bg-gradient-primary {
+    background-color: var(--otp-primary) !important;
+    background-image: none !important;
+    border-color: var(--otp-primary) !important;
+    color: #FFFFFF !important;
+}
+.btn-primary:hover {
+    background-color: var(--otp-primary-hover) !important;
+    border-color: var(--otp-primary-hover) !important;
+    color: #FFFFFF !important;
+}
+
+.btn-success, .bg-gradient-success {
+    background-color: var(--otp-success) !important;
+    background-image: none !important;
+    border-color: var(--otp-success) !important;
+    color: #FFFFFF !important;
+}
+.btn-success:hover {
+    background-color: var(--otp-success-hover) !important;
+    border-color: var(--otp-success-hover) !important;
+    color: #FFFFFF !important;
+}
+
+.btn-warning, .bg-gradient-warning {
+    background-color: var(--otp-warning) !important;
+    background-image: none !important;
+    border-color: var(--otp-warning) !important;
+    color: #FFFFFF !important;
+}
+.btn-warning:hover {
+    background-color: var(--otp-warning-hover) !important;
+    border-color: var(--otp-warning-hover) !important;
+    color: #FFFFFF !important;
+}
+
+.btn-danger, .bg-gradient-danger {
+    background-color: var(--otp-danger) !important;
+    background-image: none !important;
+    border-color: var(--otp-danger) !important;
+    color: #FFFFFF !important;
+}
+.btn-danger:hover {
+    background-color: var(--otp-danger-hover) !important;
+    border-color: var(--otp-danger-hover) !important;
+    color: #FFFFFF !important;
+}
+
+.btn-outline-primary {
+    border: 2px solid var(--otp-primary) !important;
+    color: var(--otp-primary) !important;
+    background-color: transparent !important;
+}
+.btn-outline-primary:hover {
+    background-color: var(--otp-primary) !important;
+    color: #FFFFFF !important;
+}
+
+.btn-sm {
+    min-height: 38px !important;
+    font-size: 14px !important;
+    padding: 6px 14px !important;
+}
+
+.btn-lg {
+    min-height: 52px !important;
+    font-size: 18px !important;
+    padding: 12px 24px !important;
+}
+
+/* ==========================================================================
+   5. Cards, Tables & Data Lists (Spacious & Clean)
+   ========================================================================== */
+.card {
+    background-color: #FFFFFF !important;
+    border: 1.5px solid var(--otp-border-light) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+    margin-bottom: 24px;
+}
+
+.card-header {
+    background-color: #FFFFFF !important;
+    border-bottom: 1.5px solid var(--otp-border-light) !important;
+    padding: 18px 24px !important;
+}
+
+.card-body {
+    padding: 24px !important;
+}
+
+.table {
+    width: 100% !important;
+    margin-bottom: 0 !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    color: var(--otp-text-main) !important;
+}
+
+.table th {
+    background-color: #F1F5F9 !important;
+    color: var(--otp-text-main) !important;
+    font-weight: 700 !important;
+    font-size: 15px !important;
+    padding: 14px 18px !important;
+    border-bottom: 2px solid var(--otp-border) !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+.table td {
+    padding: 14px 18px !important;
+    font-size: 16px !important;
+    vertical-align: middle !important;
+    border-bottom: 1px solid var(--otp-border-light) !important;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #F8FAFC !important;
+}
+
+/* ==========================================================================
+   6. Sidebar / Sidenav Overrides (Senior Navigation)
+   ========================================================================== */
+.sidenav, #sidenav-main {
+    background-color: #FFFFFF !important;
+    border-right: 1.5px solid var(--otp-border-light) !important;
+    box-shadow: 2px 0 8px rgba(15, 23, 42, 0.03) !important;
+}
+
+.sidenav .navbar-nav .nav-link {
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    padding: 12px 18px !important;
+    margin: 4px 12px !important;
+    border-radius: 8px !important;
+    color: var(--otp-text-muted) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    transition: all 0.2s ease;
+}
+
+.sidenav .navbar-nav .nav-link:hover {
+    background-color: #F1F5F9 !important;
+    color: var(--otp-primary) !important;
+}
+
+.sidenav .navbar-nav .nav-link.active,
+.sidenav .navbar-nav .nav-item.active > .nav-link {
+    background-color: var(--otp-primary-light) !important;
+    color: var(--otp-primary) !important;
+    font-weight: 700 !important;
+}
+
+.sidenav .navbar-nav .nav-link .icon,
+.sidenav .navbar-nav .nav-link i {
+    font-size: 18px !important;
+    color: inherit !important;
+}
+
+/* ==========================================================================
+   7. Breadcrumb & Step Navigation Bar
+   ========================================================================== */
+.otp-workflow-steps {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #FFFFFF;
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 1.5px solid var(--otp-border-light);
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.otp-step-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--otp-text-muted);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.otp-step-item.active {
+    background-color: var(--otp-primary-light);
+    color: var(--otp-primary);
+}
+
+.otp-step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #CBD5E1;
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.otp-step-item.active .otp-step-num {
+    background-color: var(--otp-primary);
+}
+
+.otp-step-separator {
+    color: #94A3B8;
+    font-size: 14px;
+}
+
+/* ==========================================================================
+   10. Thai Buddhist DatePicker Styling (Clean White & Large Numbers)
+   ========================================================================== */
+.datepicker {
+    padding: 12px;
+    border-radius: 12px;
+    background-color: #FFFFFF !important;
+    border: 1.5px solid #CBD5E1 !important;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15) !important;
+    font-family: 'Sarabun', sans-serif !important;
+    z-index: 1060 !important;
+}
+
+.datepicker-dropdown {
+    top: 0;
+    left: 0;
+}
+
+.datepicker table {
+    margin: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    border-collapse: separate;
+    border-spacing: 2px;
+}
+
+.datepicker td, .datepicker th {
+    text-align: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #0F172A;
+}
+
+.datepicker table tr td.day:hover,
+.datepicker table tr td.focused {
+    background: #E0F2FE;
+    color: #0284C7;
+    cursor: pointer;
+}
+
+.datepicker table tr td.old,
+.datepicker table tr td.new {
+    color: #94A3B8;
+}
+
+.datepicker table tr td.today {
+    background-color: #FEF3C7;
+    color: #B45309;
+    font-weight: 700;
+}
+
+.datepicker table tr td.active,
+.datepicker table tr td.active:hover {
+    background-color: #0284C7 !important;
+    color: #FFFFFF !important;
+    font-weight: 700;
+}
+
+.datepicker .datepicker-switch {
+    font-size: 17px;
+    font-weight: 700;
+    color: #0F172A;
+    padding: 6px 0;
+}
+
+.datepicker .datepicker-switch:hover,
+.datepicker .prev:hover,
+.datepicker .next:hover,
+.datepicker tfoot tr th:hover {
+    background: #F1F5F9;
+    color: #0284C7;
+    cursor: pointer;
+}
+
+.datepicker .dow {
+    color: #64748B;
+    font-weight: 700;
+    font-size: 14px;
+}
+

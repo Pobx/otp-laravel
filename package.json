@@ -1,0 +1,37 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "mix:dev": "mix",
+        "mix:prod": "mix --production",
+        "development": "mix",
+        "production": "mix --production"
+    },
+    "devDependencies": {
+        "@popperjs/core": "^2.11.8",
+        "@tailwindcss/forms": "^0.4.0",
+        "admin-lte": "^4.10.0",
+        "alpinejs": "^3.4.2",
+        "autoprefixer": "^10.4.2",
+        "axios": "^0.25",
+        "bootstrap": "^5.3.8",
+        "bootstrap-icons": "^1.13.2",
+        "chart.js": "^4.6.1",
+        "fullcalendar": "^6.1.22",
+        "jsvectormap": "^1.7.0",
+        "laravel-echo": "^2.3.0",
+        "laravel-mix": "^6.0.6",
+        "laravel-vite-plugin": "^3.2.0",
+        "lodash": "^4.17.19",
+        "overlayscrollbars": "^2.17.0",
+        "postcss": "^8.4.6",
+        "postcss-import": "^14.0.2",
+        "puppeteer-core": "^24.43.1",
+        "pusher-js": "^8.4.0",
+        "sass": "^1.107.1",
+        "sortablejs": "^1.15.7",
+        "tailwindcss": "^3.0.18",
+        "vite": "^8.3.5"
+    }
+}

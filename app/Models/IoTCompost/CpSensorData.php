@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Models\IoTCompost;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class CpSensorData extends Model
+{
+    use HasFactory;
+
+    protected $table = 'cp_sensor_data';
+
+    protected $fillable = [
+        'id',
+        'temperature',
+        'humidity',
+        'methane_gas',
+        'weight',
+    ];
+}

@@ -1,0 +1,29 @@
+{
+  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff": {
+    "file": "assets/bootstrap-icons-BHUGvtHM.woff",
+    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff"
+  },
+  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2": {
+    "file": "assets/bootstrap-icons-DJdhg9lH.woff2",
+    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
+  },
+  "resources/css/adminlte.css": {
+    "file": "assets/adminlte-VgaEkjm-.css",
+    "name": "adminlte",
+    "names": [
+      "adminlte.css"
+    ],
+    "src": "resources/css/adminlte.css",
+    "isEntry": true,
+    "assets": [
+      "assets/bootstrap-icons-DJdhg9lH.woff2",
+      "assets/bootstrap-icons-BHUGvtHM.woff"
+    ]
+  },
+  "resources/js/adminlte.js": {
+    "file": "assets/adminlte-CDWgFJAy.js",
+    "name": "adminlte",
+    "src": "resources/js/adminlte.js",
+    "isEntry": true
+  }
+}

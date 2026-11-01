@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        if (! Schema::hasTable('budget_year')) {
+            Schema::create('budget_year', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->unsignedBigInteger('org_id_fk')->nullable();
+                $table->string('budgetyear_name');
+                $table->date('startdate');
+                $table->date('enddate');
+                $table->enum('status', ['inactive', 'active']);
+                $table->timestamps();
+            });
+        }
+
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('budget_year');
+    }
+};
