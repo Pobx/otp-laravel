@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTP 2025 - Interactive UX/UI Prototype (Left Menu by Role & Modern Form)</title>
+  
+  <!-- Fonts: Sarabun & Prompt -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap 5.3 & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    :root {
+      --bg-surface: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --border-color: #E2E8F0;
+      --border-active: #0284C7;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --primary: #0284C7;
+      --primary-hover: #0369A1;
+      --primary-subtle: #E0F2FE;
+      --success: #16A34A;
+      --success-subtle: #DCFCE7;
+      --warning: #D97706;
+      --danger: #DC2626;
+      --danger-subtle: #FEE2E2;
+      --sidebar-width: 290px;
+      --touch-target: 48px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Sarabun', sans-serif;
+      font-size: 16px;
+      background-color: var(--bg-surface);
+      color: var(--text-main);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6, .brand-title {
+      font-family: 'Prompt', sans-serif;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Top Prototype Control Bar */
+    .prototype-bar {
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 10px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 1050;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .role-badge-btn {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 24px;
+      border: 1px solid #334155;
+      background: #1E293B;
+      color: #CBD5E1;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .role-badge-btn:hover {
+      background: #334155;
+      color: #FFFFFF;
+    }
+    .role-badge-btn.active {
+      background: #0284C7;
+      border-color: #38BDF8;
+      color: #FFFFFF;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+    }
+
+    /* Layout Wrapper */
+    .app-layout {
+      display: flex;
+      min-height: calc(100vh - 58px);
+    }
+
+    /* Left Sidebar */
+    .app-sidebar {
+      width: var(--sidebar-width);
+      background: #FFFFFF;
+      border-right: 2px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      position: sticky;
+      top: 58px;
+      height: calc(100vh - 58px);
+      overflow-y: auto;
+      transition: width 0.3s ease;
+    }
+
+    .sidebar-header {
+      padding: 20px 20px 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+      background: #FAFAFA;
+    }
+
+    .sidebar-user-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+    }
+    .user-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--primary-subtle);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .sidebar-nav {
+      padding: 16px 12px;
+      flex-grow: 1;
+    }
+
+    .nav-section-title {
+      font-family: 'Prompt', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #64748B;
+      padding: 14px 12px 6px 12px;
+      margin: 0;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: var(--touch-target);
+      padding: 10px 16px;
+      border-radius: 10px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      transition: all 0.18s ease;
+      margin-bottom: 4px;
+    }
+    .sidebar-link i {
+      font-size: 20px;
+      color: #64748B;
+      transition: color 0.18s ease;
+    }
+    .sidebar-link:hover {
+      background: #F1F5F9;
+      color: var(--primary);
+    }
+    .sidebar-link:hover i {
+      color: var(--primary);
+    }
+    .sidebar-link.active {
+      background: var(--primary-subtle);
+      color: var(--primary);
+      font-weight: 600;
+      border-left: 4px solid var(--primary);
+    }
+    .sidebar-link.active i {
+      color: var(--primary);
+    }
+    .badge-count {
+      margin-left: auto;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 12px;
+    }
+
+    .hub-return-btn {
+      margin: 12px;
+      min-height: 46px;
+      border: 1.5px dashed #0284C7;
+      background: #F0F9FF;
+      color: #0284C7;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .hub-return-btn:hover {
+      background: #E0F2FE;
+      color: #0369A1;
+      border-color: #0369A1;
+    }
+
+    /* Main Content */
+    .app-main {
+      flex-grow: 1;
+      padding: 32px 36px;
+      overflow-y: auto;
+      max-width: 1300px;
+    }
+
+    /* Senior-Friendly Clean Card */
+    .content-card {
+      background: #FFFFFF;
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+      padding: 28px 32px;
+      margin-bottom: 28px;
+    }
+
+    /* Step Wizard Indicator */
+    .step-wizard {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    .step-wizard::before {
+      content: '';
+      position: absolute;
+      top: 24px;
+      left: 40px;
+      right: 40px;
+      height: 3px;
+      background: #E2E8F0;
+      z-index: 1;
+    }
+    .wizard-step {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #FFFFFF;
+      padding: 0 12px;
+      cursor: pointer;
+    }
+    .wizard-step-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 3px solid #CBD5E1;
+      color: #64748B;
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      transition: all 0.25s ease;
+    }
+    .wizard-step.active .wizard-step-circle {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: #FFFFFF;
+      box-shadow: 0 0 0 6px var(--primary-subtle);
+    }
+    .wizard-step.completed .wizard-step-circle {
+      border-color: var(--success);
+      background: var(--success);
+      color: #FFFFFF;
+    }
+    .wizard-step-label {
+      font-size: 16px;
+      font-weight: 600;
+      color: #64748B;
+    }
+    .wizard-step.active .wizard-step-label {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* Form Fields - Senior Friendly 48px-52px */
+    .form-label {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1E293B;
+      margin-bottom: 8px;
+    }
+    .required-star {
+      color: var(--danger);
+      font-weight: 700;
+      margin-left: 3px;
+    }
+    .form-control, .form-select {
+      min-height: 50px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 2px solid #CBD5E1;
+      padding: 10px 16px;
+      color: var(--text-main);
+      background-color: #FFFFFF;
+      transition: all 0.2s ease;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px var(--primary-subtle);
+      outline: none;
+    }
+    .form-control.is-invalid, .form-select.is-invalid {
+      border-color: var(--danger);
+      background-color: #FFF5F5;
+    }
+    .form-hint {
+      font-size: 14px;
+      color: #64748B;
+      margin-top: 6px;
+    }
+
+    /* Single Error Banner (ADR 0005) */
+    .single-error-banner {
+      display: none;
+      background: #FEF2F2;
+      border: 2px solid #FCA5A5;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      animation: shake 0.3s ease;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+
+    /* Thai Buddhist Era Datepicker Container */
+    .thai-date-input-group {
+      position: relative;
+    }
+    .thai-date-badge {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #E2E8F0;
+      color: #334155;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      pointer-events: none;
+    }
+
+    /* Action Bar (ADR 0005) */
+    .form-action-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 24px;
+      margin-top: 24px;
+      border-top: 2px solid var(--border-color);
+    }
+    .btn-senior {
+      min-height: 52px;
+      padding: 12px 28px;
+      font-size: 17px;
+      font-weight: 600;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+    }
+    .btn-senior-primary {
+      background: var(--primary);
+      color: #FFFFFF;
+      border: none;
+    }
+    .btn-senior-primary:hover {
+      background: var(--primary-hover);
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+    }
+    .btn-senior-outline {
+      background: #FFFFFF;
+      color: #475569;
+      border: 2px solid #CBD5E1;
+    }
+    .btn-senior-outline:hover {
+      background: #F1F5F9;
+      border-color: #94A3B8;
+      color: #1E293B;
+    }
+
+    /* Comparison Tabs */
+    .approach-pill {
+      cursor: pointer;
+      padding: 10px 20px;
+      border-radius: 12px;
+      border: 2px solid var(--border-color);
+      background: #FFFFFF;
+      font-weight: 600;
+      color: #475569;
+      transition: all 0.2s ease;
+    }
+    .approach-pill.active {
+      border-color: var(--primary);
+      background: var(--primary-subtle);
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Prototype Control Bar (Role Switcher & Approaches) -->
+  <header class="prototype-bar d-flex flex-wrap align-items-center justify-content-between gap-3">
+    <div class="d-flex align-items-center gap-2">
+      <span class="badge bg-primary px-3 py-2 fs-6">
+        <i class="bi bi-sliders me-1"></i> UX/UI Interactive Prototype
+      </span>
+      <span class="text-white-50 fs-6">ทดสอบสลับบทบาท (Role) เพื่อดู Left Menu ปรับเปลี่ยนทันที:</span>
+    </div>
+
+    <!-- Role Switcher Buttons -->
+    <div class="d-flex flex-wrap align-items-center gap-2" id="roleSwitcher">
+      <button class="role-badge-btn active" onclick="switchRole('superadmin', this)">
+        <i class="bi bi-shield-shaded text-danger"></i> Super Admin
+      </button>
+      <button class="role-badge-btn" onclick="switchRole('finance', this)">
+        <i class="bi bi-cash-coin text-warning"></i> Finance (การเงิน)
+      </button>
+      <button class="role-badge-btn" onclick="switchRole('tabwater', this)">
+        <i class="bi bi-droplet-half text-info"></i> Tabwater (ช่างประปา)
+      </button>
+      <button class="role-badge-btn" onclick="switchRole('keptkaya', this)">
+        <i class="bi bi-trash3 text-success"></i> Keptkaya (สิ่งแวดล้อม)
+      </button>
+      <button class="role-badge-btn" onclick="switchRole('inventory', this)">
+        <i class="bi bi-box-seam text-primary"></i> Inventory (พัสดุ)
+      </button>
+      <button class="role-badge-btn" onclick="switchRole('user', this)">
+        <i class="bi bi-person text-secondary"></i> Citizen (ประชาชน)
+      </button>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    
+    <!-- Dynamic Left Sidebar by Role -->
+    <aside class="app-sidebar" id="appSidebar">
+      <!-- Sidebar Header / User Card -->
+      <div class="sidebar-header">
+        <div class="sidebar-user-card mb-2">
+          <div class="user-avatar" id="sidebarAvatar">SA</div>
+          <div class="flex-grow-1 overflow-hidden">
+            <div class="fw-bold text-truncate" id="sidebarUserName">สมชาย มีความสุข</div>
+            <div class="text-muted small text-truncate" id="sidebarRoleLabel">ผู้ดูแลระบบสูงสุด (Super Admin)</div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between text-muted small px-1">
+          <span><i class="bi bi-building me-1"></i> เทศบาลเมืองดอนแก้ว</span>
+          <span class="badge bg-success-subtle text-success">ออนไลน์</span>
+        </div>
+      </div>
+
+      <!-- Hub Quick Return -->
+      <a href="javascript:void(0)" class="hub-return-btn" title="กลับหน้ากระดานรวมระบบ">
+        <i class="bi bi-grid-3x3-gap-fill"></i>
+        <span>ศูนย์รวมระบบงาน (Hub)</span>
+      </a>
+
+      <!-- Navigation Items Container (Re-rendered by JS) -->
+      <nav class="sidebar-nav" id="sidebarNavContent">
+        <!-- Injected dynamically -->
+      </nav>
+
+      <!-- Sidebar Footer Info -->
+      <div class="p-3 border-top bg-light text-center small text-muted">
+        <div>OTP 2025 v2.4 • Senior-Friendly</div>
+        <div class="text-xs text-secondary mt-1">WCAG 2.1 AAA Compliant</div>
+      </div>
+    </aside>
+
+    <!-- Main Workspace Area -->
+    <main class="app-main">
+
+      <!-- Breadcrumbs & Title Bar -->
+      <div class="d-flex flex-wrap align-items-center justify-content-between mb-4 gap-3">
+        <div>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-1 text-muted">
+              <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-muted">ระบบประปา</a></li>
+              <li class="breadcrumb-item active text-primary fw-semibold" aria-current="page">ลงทะเบียนผู้ขอใช้น้ำและติดตั้งมาตรวัด</li>
+            </ol>
+          </nav>
+          <h2 class="h3 mb-0 fw-bold">แบบคำร้องขอติดตั้งมาตรวัดน้ำประปาใหม่</h2>
+        </div>
+
+        <!-- Strategy / View Selector -->
+        <div class="d-flex gap-2 bg-white p-2 rounded-3 border">
+          <button class="btn btn-sm btn-outline-primary active" id="btnModeForm" onclick="toggleMainView('form')">
+            <i class="bi bi-ui-checks me-1"></i> ฟอร์มตัวอย่าง (Senior-Form)
+          </button>
+          <button class="btn btn-sm btn-outline-secondary" id="btnModeComparison" onclick="toggleMainView('comparison')">
+            <i class="bi bi-diagram-3 me-1"></i> สรุปเปรียบเทียบ 2 โครงสร้าง Menu
+          </button>
+        </div>
+      </div>
+
+      <!-- VIEW 1: Senior-Friendly Modern Form Showcase -->
+      <div id="formViewSection">
+        
+        <!-- Single-Error Notification Banner (ADR 0005) -->
+        <div class="single-error-banner" id="singleErrorBanner">
+          <div class="d-flex align-items-start gap-3">
+            <i class="bi bi-exclamation-triangle-fill text-danger fs-4"></i>
+            <div>
+              <div class="fw-bold text-danger fs-5" id="errorTitle">โปรดระบุข้อมูลให้ครบถ้วน</div>
+              <div class="text-dark" id="errorMessage">กรุณากรอกเลขประจำตัวประชาชน 13 หลักของผู้ขอใช้น้ำให้ถูกต้อง</div>
+            </div>
+            <button type="button" class="btn-close ms-auto" onclick="closeErrorBanner()"></button>
+          </div>
+        </div>
+
+        <!-- Step Wizard -->
+        <div class="content-card">
+          <div class="step-wizard">
+            <div class="wizard-step completed" onclick="setStep(1)">
+              <div class="wizard-step-circle"><i class="bi bi-check-lg"></i></div>
+              <div class="wizard-step-label">1. ข้อมูลผู้ขอใช้น้ำ</div>
+            </div>
+            <div class="wizard-step active" onclick="setStep(2)">
+              <div class="wizard-step-circle">2</div>
+              <div class="wizard-step-label">2. ข้อมูลมิเตอร์และสถานที่</div>
+            </div>
+            <div class="wizard-step" onclick="setStep(3)">
+              <div class="wizard-step-circle">3</div>
+              <div class="wizard-step-label">3. ยืนยันและแนบเอกสาร</div>
+            </div>
+          </div>
+
+          <!-- The Form -->
+          <form id="sampleWaterForm" novalidate onsubmit="handleFormSubmit(event)">
+            
+            <!-- Section 1: ข้อมูลผู้ขอรับบริการ -->
+            <div class="mb-4">
+              <h4 class="h5 fw-bold text-primary mb-3 pb-2 border-bottom d-flex align-items-center gap-2">
+                <i class="bi bi-person-vcard fs-4"></i> ส่วนที่ 1: ข้อมูลผู้ขอรับบริการ (เจ้าของบ้าน/ผู้ใช้น้ำ)
+              </h4>
+
+              <div class="row g-4">
+                <div class="col-md-4">
+                  <label class="form-label" for="citizenId">เลขประจำตัวประชาชน <span class="required-star">*</span></label>
+                  <input type="text" class="form-control" id="citizenId" placeholder="1-xxxx-xxxxx-xx-x" maxlength="13" required>
+                  <div class="form-hint"><i class="bi bi-info-circle me-1"></i> ตัวเลข 13 หลัก ไม่ต้องใส่ขีด</div>
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-label" for="firstName">ชื่อ - นามสกุล ผู้ขอใช้น้ำ <span class="required-star">*</span></label>
+                  <input type="text" class="form-control" id="fullName" placeholder="เช่น นายสมคิด สบายใจ" required>
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-label" for="phoneNum">เบอร์โทรศัพท์ติดต่อ <span class="required-star">*</span></label>
+                  <input type="tel" class="form-control" id="phoneNum" placeholder="เช่น 0812345678" required>
+                  <div class="form-hint">สำหรับส่ง SMS แจ้งเตือนบิลค่าน้ำ</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 2: ข้อมูลสถานที่และประเภทมิเตอร์ -->
+            <div class="mb-4">
+              <h4 class="h5 fw-bold text-primary mb-3 pb-2 border-bottom d-flex align-items-center gap-2">
+                <i class="bi bi-geo-alt-fill fs-4"></i> ส่วนที่ 2: สถานที่ติดตั้งและประเภทการใช้น้ำ
+              </h4>
+
+              <div class="row g-4">
+                <div class="col-md-3">
+                  <label class="form-label" for="houseNo">บ้านเลขที่ <span class="required-star">*</span></label>
+                  <input type="text" class="form-control" id="houseNo" placeholder="เช่น 99/4" required>
+                </div>
+
+                <div class="col-md-3">
+                  <label class="form-label" for="villageNo">หมู่ที่ / ชุมชน <span class="required-star">*</span></label>
+                  <select class="form-select" id="villageNo" required>
+                    <option value="">-- กรุณาเลือกหมู่ที่ --</option>
+                    <option value="1">หมู่ที่ 1 ชุมชนบ้านดอน</option>
+                    <option value="2">หมู่ที่ 2 ชุมชนริมคลอง</option>
+                    <option value="3">หมู่ที่ 3 ชุมชนสุขใจ</option>
+                  </select>
+                </div>
+
+                <div class="col-md-3">
+                  <label class="form-label" for="meterCategory">ประเภทผู้ใช้น้ำ <span class="required-star">*</span></label>
+                  <select class="form-select" id="meterCategory" required>
+                    <option value="1" selected>ประเภทที่ 1: ที่พักอาศัยทั่วไป</option>
+                    <option value="2">ประเภทที่ 2: ร้านค้า/พาณิชยกรรม</option>
+                    <option value="3">ประเภทที่ 3: หน่วยงานราชการ/วัด</option>
+                  </select>
+                </div>
+
+                <!-- Thai Buddhist Era Datepicker (ADR 0005) -->
+                <div class="col-md-3">
+                  <label class="form-label" for="installDateThai">วันที่นัดหมายติดตั้ง <span class="required-star">*</span></label>
+                  <div class="thai-date-input-group">
+                    <input type="text" class="form-control" id="installDateThai" placeholder="01/12/2569" value="05/11/2569" required>
+                    <span class="thai-date-badge">พ.ศ.</span>
+                  </div>
+                  <!-- Hidden field for ISO 8601 YYYY-MM-DD storage -->
+                  <input type="hidden" id="installDateIso" name="install_date" value="2026-11-05">
+                  <div class="form-hint text-success"><i class="bi bi-calendar-check me-1"></i> จัดเก็บระบบ: ค.ศ. 2026-11-05</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Bar (ADR 0005: ยกเลิกอยู่ซ้าย บันทึกอยู่ขวา) -->
+            <div class="form-action-bar">
+              <button type="button" class="btn btn-senior btn-senior-outline" onclick="resetForm()">
+                <i class="bi bi-x-circle"></i> ล้างข้อมูล / ยกเลิก
+              </button>
+
+              <div class="d-flex gap-3">
+                <button type="button" class="btn btn-senior btn-senior-outline" onclick="simulateValidationFail()">
+                  <i class="bi bi-bug"></i> ทดสอบ Error (First-Error Only)
+                </button>
+                <button type="submit" class="btn btn-senior btn-senior-primary">
+                  <i class="bi bi-save2"></i> บันทึกข้อมูลคำร้อง
+                </button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Senior-Friendly Design Highlights Info Card -->
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="p-3 bg-white border rounded-3 h-100 shadow-sm">
+              <div class="d-flex align-items-center gap-2 mb-2 text-primary fw-bold fs-6">
+                <i class="bi bi-aspect-ratio fs-4"></i> 1. Touch Target ขนาด 48px–52px
+              </div>
+              <p class="text-muted small mb-0">ช่องกรอกข้อมูลและปุ่มกดออกแบบให้มีความสูงมากกว่าปกติ รองรับผู้สูงอายุ 40+ ปี และการกดผ่านหน้าจอสัมผัสหรือแท็บเล็ตภาคสนาม</p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="p-3 bg-white border rounded-3 h-100 shadow-sm">
+              <div class="d-flex align-items-center gap-2 mb-2 text-success fw-bold fs-6">
+                <i class="bi bi-calendar-event fs-4"></i> 2. Thai Era Dual-Binding
+              </div>
+              <p class="text-muted small mb-0">แสดงผลและเลือกเป็นปี พ.ศ. สบายตา ไม่ทำให้ผู้ใช้สับสนเรื่องปี ขณะที่ระบบจัดเก็บเป็น ค.ศ. (ISO-8601) อัตโนมัติทางเบื้องหลัง</p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="p-3 bg-white border rounded-3 h-100 shadow-sm">
+              <div class="d-flex align-items-center gap-2 mb-2 text-danger fw-bold fs-6">
+                <i class="bi bi-shield-check fs-4"></i> 3. Single Error Focus
+              </div>
+              <p class="text-muted small mb-0">หากกรอกผิดหลายจุด ระบบจะนำเฉพาะข้อผิดพลาดแรกสุดขึ้นมาแสดงพร้อม Auto-scroll & Focus ลด Cognitive Overload</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- VIEW 2: Comparison & Architecture Recommendation -->
+      <div id="comparisonViewSection" style="display: none;">
+        <div class="content-card">
+          <h3 class="h4 fw-bold text-dark mb-4">เปรียบเทียบแนวทางสถาปัตยกรรม Left Menu (Architecture Options)</h3>
+
+          <div class="row g-4">
+            <!-- Option A -->
+            <div class="col-md-6">
+              <div class="p-4 border border-2 border-primary rounded-4 bg-white h-100 position-relative shadow-sm">
+                <span class="badge bg-primary position-absolute top-0 end-0 m-3 px-3 py-2">แนะนำสูงสุด (Recommended)</span>
+                <h4 class="h5 fw-bold text-primary mb-2">แนวทางที่ 1: Dynamic Role-Scoped Sidebar</h4>
+                <p class="text-muted">เมนูด้านซ้ายจะเปลี่ยนชุดตามบทบาทหน้าที่ของ User ที่ล็อกอิน หรือสลับระบบได้จาก Header</p>
+                
+                <h6 class="fw-bold text-dark mt-3">ข้อดี (Pros):</h6>
+                <ul class="text-muted small ps-3">
+                  <li><strong>ลดความสับสนอย่างเด็ดขาด:</strong> เจ้าหน้าที่แต่ละฝ่าย (เช่น การเงิน, ช่างประปา, พัสดุ) จะเห็นเฉพาะงานที่ตนเองต้องรับผิดชอบ</li>
+                  <li><strong>พื้นที่แนวตั้งไม่อึดอัด:</strong> เมนูสั้น กระชับ ตัวหนังสือใหญ่ 16px มองเห็นง่าย เหมาะกับเจ้าหน้าที่ 40+ ปี</li>
+                  <li><strong>รักษาความปลอดภัย (Least Privilege):</strong> ผู้ใช้ทั่วไปไม่มีเมนูหลังบ้านหลุดมารกสายตา</li>
+                </ul>
+
+                <h6 class="fw-bold text-dark mt-3">เหมาะสำหรับ:</h6>
+                <div class="badge bg-light text-dark border p-2">งานบริหารเทศบาลที่มีแผนกและหน้าที่รับผิดชอบชัดเจน</div>
+              </div>
+            </div>
+
+            <!-- Option B -->
+            <div class="col-md-6">
+              <div class="p-4 border rounded-4 bg-white h-100 shadow-sm">
+                <h4 class="h5 fw-bold text-secondary mb-2">แนวทางที่ 2: Unified Mega Sidebar (Tree Accordion)</h4>
+                <p class="text-muted">รวมทุกระบบไว้ในแถบเดียว โดยใช้ระบบ Collapse / Expand แยกตามโมดูล</p>
+                
+                <h6 class="fw-bold text-dark mt-3">ข้อดี / ข้อสังเกต:</h6>
+                <ul class="text-muted small ps-3">
+                  <li>เห็นภาพรวมทุกระบบงานได้จากที่เดียวสำหรับ Super Admin</li>
+                  <li><strong>ข้อเสีย:</strong> รายการเมนูยาวเกินไป (Vertical Overload) ผู้ใช้สูงอายุต้อง Scroll หาเมนูยาก และมักคลิกผิดพลาด</li>
+                </ul>
+
+                <h6 class="fw-bold text-dark mt-3">เหมาะสำหรับ:</h6>
+                <div class="badge bg-light text-secondary border p-2">ระบบขนาดเล็กที่มีเมนูไม่เกิน 8-10 รายการ</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 p-3 bg-light rounded-3 border">
+            <h5 class="fw-bold text-dark mb-2"><i class="bi bi-lightbulb-fill text-warning me-2"></i> ข้อเสนอแนะในการ Implementation:</h5>
+            <p class="mb-0 text-muted">
+              ใช้ **AdminLTE 4 Menu Filter (`RoleMenuFilter.php`)** ร่วมกับ Spatie Permission ในการกรองอาเรย์เมนูจาก `config/adminlte.php` โดยอัตโนมัติ ทำให้ไม่ต้องแยกไฟล์ Layout กระจัดกระจาย ทุกหน้าจะใช้มาตรฐานเดียวกันผ่าน `@extends('adminlte::page')`
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- SweetAlert2 Modal Simulation -->
+  <div class="modal fade" id="successModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 rounded-4 shadow-lg p-3 text-center">
+        <div class="modal-body py-4">
+          <div class="mb-3 text-success">
+            <i class="bi bi-check-circle-fill" style="font-size: 64px;"></i>
+          </div>
+          <h4 class="fw-bold text-dark mb-2">บันทึกข้อมูลเรียบร้อยแล้ว</h4>
+          <p class="text-muted mb-4 fs-6">
+            ระบบได้บันทึกคำร้องขอติดตั้งมาตรวัดน้ำเลขที่ <strong class="text-primary">REQ-2569-0089</strong> เข้าสู่ระบบเรียบร้อยแล้ว
+          </p>
+          <button type="button" class="btn btn-senior btn-senior-primary w-100 justify-content-center" data-bs-dismiss="modal">
+            รับทราบและกลับสู่หน้ารายการ
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Role Definitions & Menu Structures
+    const rolesData = {
+      superadmin: {
+        name: "สมชาย มีความสุข",
+        role: "ผู้ดูแลระบบสูงสุด (Super Admin)",
+        avatar: "SA",
+        sections: [
+          {
+            title: "แดชบอร์ดและการบริหาร",
+            items: [
+              { icon: "bi-speedometer2", text: "Dashboard ภาพรวมทุกระบบ", active: true },
+              { icon: "bi-building-gear", text: "สลับหน่วยงาน/อปท.", badge: "3 แห่ง" }
+            ]
+          },
+          {
+            title: "การจัดการระบบกลาง",
+            items: [
+              { icon: "bi-people", text: "จัดการผู้ใช้งานทั้งหมด", badge: "1,240" },
+              { icon: "bi-shield-lock", text: "กำหนดสิทธิ์และบทบาท (Roles)" },
+              { icon: "bi-diagram-3", text: "ตั้งค่า Workflow อนุมัติ" }
+            ]
+          },
+          {
+            title: "การตั้งค่าโครงสร้างพื้นฐาน",
+            items: [
+              { icon: "bi-geo-alt", text: "โซน / บล็อกพื้นที่จัดเก็บ" },
+              { icon: "bi-sliders", text: "ตั้งค่าระบบและอัตราบริการ" }
+            ]
+          }
+        ]
+      },
+      finance: {
+        name: "วิภา มั่นคง",
+        role: "เจ้าหน้าที่การเงินและบัญชี",
+        avatar: "WP",
+        sections: [
+          {
+            title: "ระบบงานการเงินและรับชำระ",
+            items: [
+              { icon: "bi-receipt-cutoff", text: "บันทึกรับชำระค่าน้ำ (เคาน์เตอร์)", active: true },
+              { icon: "bi-search", text: "ค้นหาประวัติการชำระเงิน" },
+              { icon: "bi-printer", text: "พิมพ์ใบเสร็จย้อนหลัง" }
+            ]
+          },
+          {
+            title: "การออกบิลและแจ้งหนี้",
+            items: [
+              { icon: "bi-file-earmark-ruled", text: "สร้างรอบบิลประจำเดือน" },
+              { icon: "bi-exclamation-octagon", text: "ออกหนังสือเตือนค้างชำระ", badge: "14 ราย" }
+            ]
+          },
+          {
+            title: "รายงานการเงิน",
+            items: [
+              { icon: "bi-file-earmark-bar-graph", text: "รายงานรับชำระประจำวัน (พ.17)" },
+              { icon: "bi-wallet2", text: "รายงานลูกหนี้ค้างชำระ" }
+            ]
+          }
+        ]
+      },
+      tabwater: {
+        name: "ช่างวิชัย น้ำใส",
+        role: "หัวหน้างานประปาเทศบาล",
+        avatar: "WC",
+        sections: [
+          {
+            title: "งานมาตรวัดและผู้ใช้น้ำ",
+            items: [
+              { icon: "bi-person-plus", text: "ลงทะเบียนผู้ใช้น้ำใหม่", active: true },
+              { icon: "bi-speedometer", text: "บันทึกเลขมาตรวัดประจำเดือน" },
+              { icon: "bi-tools", text: "จัดการตัด/ต่อมาตรวัดน้ำ", badge: "3 งาน" }
+            ]
+          },
+          {
+            title: "ระบบผลิตและโครงข่าย",
+            items: [
+              { icon: "bi-water", text: "Dashboard สถานีผลิตน้ำ" },
+              { icon: "bi-bezier2", text: "ผังแนวท่อประปาและโหนด" },
+              { icon: "bi-sliders2", text: "บันทึกคุณภาพน้ำประจำวัน" }
+            ]
+          }
+        ]
+      },
+      keptkaya: {
+        name: "ประสิทธิ์ สิ่งแวดล้อม",
+        role: "เจ้าหน้าที่จัดการขยะและรีไซเคิล",
+        avatar: "PS",
+        sections: [
+          {
+            title: "ระบบจัดเก็บขยะรีไซเคิล",
+            items: [
+              { icon: "bi-recycle", text: "บันทึกรับซื้อขยะรีไซเคิล", active: true },
+              { icon: "bi-people-fill", text: "สมาชิกธนาคารขยะ" },
+              { icon: "bi-truck", text: "ตารางเส้นทางรถเก็บขยะ" }
+            ]
+          },
+          {
+            title: "รายงานคาร์บอนเครดิต",
+            items: [
+              { icon: "bi-tree", text: "คำนวณการลดก๊าซเรือนกระจก (EF)" }
+            ]
+          }
+        ]
+      },
+      inventory: {
+        name: "จินตนา พัสดุ",
+        role: "เจ้าหน้าที่พัสดุและคลังกลาง",
+        avatar: "JT",
+        sections: [
+          {
+            title: "ระบบคลังพัสดุ",
+            items: [
+              { icon: "bi-box-seam", text: "รายการพัสดุและสต็อกคงเหลือ", active: true },
+              { icon: "bi-cart-plus", text: "บันทึกรับพัสดุเข้าคลัง" },
+              { icon: "bi-cart-check", text: "เบิกจ่ายพัสดุหลายรายการ" },
+              { icon: "bi-clock-history", text: "พัสดุใกล้หมดอายุ/ใกล้หมด", badge: "5 ชิ้น" }
+            ]
+          }
+        ]
+      },
+      user: {
+        name: "วิชัย ราษฎรสุข",
+        role: "ประชาชน / สมาชิกเทศบาล",
+        avatar: "WR",
+        sections: [
+          {
+            title: "บริการประชาชนออนไลน์",
+            items: [
+              { icon: "bi-house-heart", text: "ข้อมูลผู้ใช้น้ำของฉัน", active: true },
+              { icon: "bi-receipt", text: "ประวัติบิลค่าน้ำและใบเสร็จ" },
+              { icon: "bi-exclamation-circle", text: "แจ้งเหตุน้ำประปาขัดข้อง/ท่อแตก" }
+            ]
+          }
+        ]
+      }
+    };
+
+    // Render Left Sidebar based on current role
+    function switchRole(roleKey, btnElement) {
+      document.querySelectorAll('#roleSwitcher .role-badge-btn').forEach(btn => btn.classList.remove('active'));
+      if(btnElement) btnElement.classList.add('active');
+
+      const data = rolesData[roleKey];
+      if(!data) return;
+
+      document.getElementById('sidebarUserName').innerText = data.name;
+      document.getElementById('sidebarRoleLabel').innerText = data.role;
+      document.getElementById('sidebarAvatar').innerText = data.avatar;
+
+      let html = '';
+      data.sections.forEach(sec => {
+        html += `<div class="nav-section-title">${sec.title}</div>`;
+        sec.items.forEach(item => {
+          const activeClass = item.active ? 'active' : '';
+          const badgeHtml = item.badge ? `<span class="badge bg-danger badge-count">${item.badge}</span>` : '';
+          html += `
+            <a href="javascript:void(0)" class="sidebar-link ${activeClass}">
+              <i class="bi ${item.icon}"></i>
+              <span class="text-truncate">${item.text}</span>
+              ${badgeHtml}
+            </a>
+          `;
+        });
+      });
+
+      document.getElementById('sidebarNavContent').innerHTML = html;
+    }
+
+    // Toggle between Form Showcase and Comparison View
+    function toggleMainView(viewType) {
+      const formSec = document.getElementById('formViewSection');
+      const compSec = document.getElementById('comparisonViewSection');
+      const btnForm = document.getElementById('btnModeForm');
+      const btnComp = document.getElementById('btnModeComparison');
+
+      if(viewType === 'form') {
+        formSec.style.display = 'block';
+        compSec.style.display = 'none';
+        btnForm.classList.add('active', 'btn-outline-primary');
+        btnForm.classList.remove('btn-outline-secondary');
+        btnComp.classList.remove('active', 'btn-outline-primary');
+        btnComp.classList.add('btn-outline-secondary');
+      } else {
+        formSec.style.display = 'none';
+        compSec.style.display = 'block';
+        btnComp.classList.add('active', 'btn-outline-primary');
+        btnComp.classList.remove('btn-outline-secondary');
+        btnForm.classList.remove('active', 'btn-outline-primary');
+        btnForm.classList.add('btn-outline-secondary');
+      }
+    }
+
+    // Wizard Step click simulation
+    function setStep(stepNum) {
+      const steps = document.querySelectorAll('.wizard-step');
+      steps.forEach((s, idx) => {
+        s.classList.remove('active', 'completed');
+        if(idx + 1 < stepNum) s.classList.add('completed');
+        if(idx + 1 === stepNum) s.classList.add('active');
+      });
+    }
+
+    // Simulate First-Error Focus (ADR 0005)
+    function simulateValidationFail() {
+      const banner = document.getElementById('singleErrorBanner');
+      const citizenInput = document.getElementById('citizenId');
+      
+      banner.style.display = 'block';
+      document.getElementById('errorTitle').innerText = 'ข้อมูลไม่ถูกต้อง (ลำดับที่ 1)';
+      document.getElementById('errorMessage').innerText = 'กรุณากรอกเลขประจำตัวประชาชน 13 หลักของผู้ขอใช้น้ำให้ครบถ้วนถูกต้อง';
+      
+      citizenInput.classList.add('is-invalid');
+      citizenInput.focus();
+      banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function closeErrorBanner() {
+      document.getElementById('singleErrorBanner').style.display = 'none';
+      document.querySelectorAll('.form-control, .form-select').forEach(el => el.classList.remove('is-invalid'));
+    }
+
+    function resetForm() {
+      document.getElementById('sampleWaterForm').reset();
+      closeErrorBanner();
+    }
+
+    // Handle Form Submit
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      closeErrorBanner();
+
+      const citizenId = document.getElementById('citizenId').value.trim();
+      if(!citizenId || citizenId.length < 13) {
+        simulateValidationFail();
+        return;
+      }
+
+      // Success Modal
+      const modal = new bootstrap.Modal(document.getElementById('successModal'));
+      modal.show();
+    }
+
+    // Initialize Default Super Admin View on Load
+    window.addEventListener('DOMContentLoaded', () => {
+      switchRole('superadmin', document.querySelector('#roleSwitcher .role-badge-btn'));
+    });
+  </script>
+</body>
+</html>

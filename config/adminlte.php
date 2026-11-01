@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\Navigation\RoleMenuFilter;
 use ColorlibHQ\AdminLte\Menu\Filters\ActiveFilter;
 use ColorlibHQ\AdminLte\Menu\Filters\GateFilter;
 use ColorlibHQ\AdminLte\Menu\Filters\HrefFilter;
@@ -410,6 +411,7 @@ return [
     */
 
     'filters' => [
+        RoleMenuFilter::class,
         GateFilter::class,
         HrefFilter::class,
         ActiveFilter::class,

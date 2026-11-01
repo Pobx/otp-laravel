@@ -2,12 +2,15 @@
 
 namespace App\Providers;
 
+use App\Listeners\BuildRoleSidebarMenu;
 use App\Models\Admin\Organization;
+use ColorlibHQ\AdminLte\Events\BuildingMenu;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
@@ -61,5 +64,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Paginator::useBootstrapFive();
+
+        Event::listen(BuildingMenu::class, BuildRoleSidebarMenu::class);
     }
 }

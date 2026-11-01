@@ -32,3 +32,4 @@ _ide_helper_models.php
 .env.zip
 .ftpquota
 repomix-output.xml
+.superpowers/

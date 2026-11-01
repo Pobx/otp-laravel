@@ -15,6 +15,9 @@ import { OverlayScrollbars } from 'overlayscrollbars'
 // Layout, accessibility). The data-lte-* API is wired on DOMContentLoaded.
 import 'admin-lte'
 
+// Senior-Friendly Form Validator and Thai Date Sync (ADR 0003 & ADR 0005)
+import './senior-form-validator.js'
+
 /**
  * Initialise an optional plugin only when its global is present.
  * Plugin libraries (Chart.js, jsVectorMap, FullCalendar, Sortable,
